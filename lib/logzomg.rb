@@ -74,7 +74,7 @@ module Logzomg
         str = ""
         str << add_msg_identifier(str)
         str << hash[:msg]
-        str << add_spaces_to_msg(hash[:msg])
+        str << right_align_date(hash[:msg])
         str << + " | " + DateTime.now.to_s + "\n"
         str
       end
@@ -82,7 +82,7 @@ module Logzomg
       # Adds spaces to right align date
       # @param {String} msg
       # @return {String}
-      def add_spaces_to_msg(msg)
+      def right_align_date(msg)
         " " * (150 - msg.length)  
       end
 

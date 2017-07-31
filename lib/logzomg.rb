@@ -4,7 +4,7 @@ require 'date'
 
 module Logzomg
   class Logger
-    # change this to proper file path
+    # TODO change this to proper file path
     LOG_PATH = File.expand_path('../../logs/', __FILE__)
     LEVELS = ['debug','info','warning','error','fatal']
 
@@ -20,10 +20,10 @@ module Logzomg
     # Logs the message
     # @param {Hash} hash
     # @param {Hash} options
-    def log(hash)
+    def log(hash, *options)
       valid_hash?(hash) ? level(hash[:level]) : (raise UnsupportedType)
       hash = format_msg(hash)
-      write(hash)
+      write(hash, *options)
     end 
 
     # Sets the log level
@@ -63,7 +63,7 @@ module Logzomg
       # @param {String} msg
       # @param {Hash} options
       def write(msg, options={})
-        options[:file] ? file = options[:file] : file = '/log.txt'
+        options[:file] ? file = "/" + options[:file] : file = '/log.txt'
         File.open(LOG_PATH + file, 'a') {|f| f.write(msg) }
       end  
 

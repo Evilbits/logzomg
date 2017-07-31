@@ -37,15 +37,15 @@ module Logzomg
     def test
       l = Logzomg::Logger.new
       l.log({
-              "msg": "Three walrusses have been spotted!", 
-              "level": "info"
-            })
-      l.log({
-              "msg": "Something is on the horizong!", 
+              "msg": "Something is on the horizon!", 
               "level": "debug"
             })
       l.log({
-              "msg": "They are coming closer", 
+              "msg": "Three acro-yoga enthusiasts have been spotted!", 
+              "level": "info"
+            })
+      l.log({
+              "msg": "They are coming closer!", 
               "level": "warning"
             })
       l.log({

@@ -25,7 +25,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Logzomg currently supports varying levels of logging intensity.
+
+`
+Debug
+Info
+Warn
+Error
+Fatal
+`
 
 ## Development
 

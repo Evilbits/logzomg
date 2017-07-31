@@ -21,8 +21,8 @@ module Logzomg
     # @param {Hash} hash
     def log(hash)
       # Raise exception if hash isn't a Hash
-      raise UnsupportedType unless valid_hash?(hash)
-      level(hash[:level])
+      raise UnsupportedType, "Must be of type Hash" unless valid_hash?(hash)
+      level(hash[:level]) if hash.has_key?(:level)  # Use default if not included
       msg = format_msg(hash[:msg])
       write(hash, msg)
     end 
@@ -31,7 +31,7 @@ module Logzomg
     # @param {String} level
     def level(level=nil)
       # Raise exception if level isn't in LEVELS
-      raise raise UnsupportedLevel unless valid_level?(level)
+      raise raise UnsupportedLevel, "Level " + level + " is not a valid level" unless valid_level?(level)
       @level = level
       self
     end
@@ -43,12 +43,12 @@ module Logzomg
               "msg": "Something is on the horizon!", 
               "level": "debug"
             })
-      l.log({
-              "msg": "This is a really really really really really really really really really " +
-                      "really really really really really really really really really really really " +
-                      "really really really really really really debug message", 
-              "level": "debug"
-            })
+      #l.log({
+      #        "msg": "This is a really really really really really really really really really " +
+      #                "really really really really really really really really really really really " +
+      #                "really really really really really really debug message", 
+      #        "level": "debug"
+      #      })
       l.log({
               "msg": "Three wild acro-yoga enthusiasts have been spotted!", 
               "level": "info"

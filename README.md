@@ -2,10 +2,7 @@
 
 Logzomg is currently in production.
 
-Logzomg is a gem that utilises the default Rails Logger but adds extra functionality.
-The main feature of Logzomg is it's integration with the Asana API.
-In the future it will automatically create tasks if critical errors happen.
-My goal is also to implement automatic emailing at some point.
+TODO: Update this damn README
 
 ## Installation
 

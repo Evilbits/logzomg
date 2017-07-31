@@ -21,7 +21,9 @@ module Logzomg
     # @param {Hash} hash
     # @param {Hash} options
     def log(hash, *options)
-      valid_hash?(hash) ? level(hash[:level]) : (raise UnsupportedType)
+      # Raise exception if hash isn't a Hash
+      raise UnsupportedType unless valid_hash?(hash)
+      level(hash[:level])
       hash = format_msg(hash)
       write(hash, *options)
     end 
@@ -29,7 +31,9 @@ module Logzomg
     # Sets the log level
     # @param {String} level
     def level(level=nil)
-      @level = level if valid_level?(level)
+      # Raise exception if level isn't in LEVELS
+      raise raise UnsupportedLevel unless valid_level?(level)
+      @level = level
       self
     end
 
@@ -116,7 +120,7 @@ module Logzomg
       # @param {String} level
       # @return {Bool}
       def valid_level?(level)
-        !level.nil? && LEVELS.any? { |l| l == level.downcase } ? (return true) : (raise UnsupportedLevel)
+        return !level.nil? && LEVELS.any? { |l| l == level.downcase } ? true : false
       end 
   end
 end

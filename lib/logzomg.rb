@@ -142,7 +142,7 @@ module Logzomg
         arr = []
         start = 0
         ending = 145
-        c =msg.length > 150 ? ((msg.length).to_f/150.00).ceil : 1
+        c = msg.length > 150 ? ((msg.length).to_f/150.00).ceil : 1
         (1..c).each do |n|
           arr << msg[start,ending]
           start += 146

@@ -31,7 +31,7 @@ module Logzomg
     # @param {String} level
     def level(level=nil)
       # Raise exception if level isn't in LEVELS
-      raise raise UnsupportedLevel, "Level " + level + " is not a valid level" unless valid_level?(level)
+      raise UnsupportedLevel, "Level " + level + " is not a valid level" unless valid_level?(level)
       @level = level
       self
     end
@@ -43,12 +43,12 @@ module Logzomg
               "msg": "Something is on the horizon!", 
               "level": "debug"
             })
-      #l.log({
-      #        "msg": "This is a really really really really really really really really really " +
-      #                "really really really really really really really really really really really " +
-      #                "really really really really really really debug message", 
-      #        "level": "debug"
-      #      })
+      l.log({
+              "msg": "This is a really really really really really really really really really " +
+                      "really really really really really really really really really really really " +
+                      "really really really really really really debug message", 
+              "level": "debug"
+            })
       l.log({
               "msg": "Three wild acro-yoga enthusiasts have been spotted!", 
               "level": "info"
@@ -71,7 +71,7 @@ module Logzomg
       # Writes the log message to the logfile. If given one in hash[:file] use that
       # @param {String} msg
       def write(hash, msg)
-        hash.has_key?(:file) ? file = "/" + hash[:file] : file = '/log.txt'
+        file = hash.has_key?(:file) ? "/" + hash[:file] : '/log.txt'
         File.open(LOG_PATH + file, 'a') {|f| f.write(msg) }
       end  
 
@@ -84,9 +84,9 @@ module Logzomg
         count = 0                                             # Use to indent on n+1
         s_msg.each do |n|
           str += add_msg_identifier(str)
-          count >= 1 ? (text = "  " + n) : text = n           # Indent if n+1 loop
+          text = count >= 1 ? "  " + n : n           # Indent if n+1 loop
           str += text
-          count >= 1 ? indented = true : indented = false     # Set indented to determine space amount
+          indented = count >= 1                               # Set indented to determine space amount
           str += right_align_date(n, indented)
           str += " | " + DateTime.now.to_s + "\n"
           count += 1
@@ -121,18 +121,18 @@ module Logzomg
         end 
       end 
 
-      # Checks if message is hash since we need to handle it differently
+      # Checks if message is hash
       # @param {hash} hash
       # @return {Bool}
       def valid_hash?(hash)
-        return hash.class == Hash ? true : false
+        return hash.class == Hash
       end 
 
       # Checks if the level value is valid (part of LEVELS)
       # @param {String} level
       # @return {Bool}
       def valid_level?(level)
-        return !level.nil? && LEVELS.any? { |l| l == level.downcase } ? true : false
+        return !level.nil? && LEVELS.any? { |l| l == level.downcase }
       end
 
       # Splits the message every 150 chars to make everything look prettier
@@ -142,7 +142,7 @@ module Logzomg
         arr = []
         start = 0
         ending = 145
-        msg.length > 150 ? (c = ((msg.length).to_f/150.00).ceil) : c = 1
+        c =msg.length > 150 ? ((msg.length).to_f/150.00).ceil : 1
         (1..c).each do |n|
           arr << msg[start,ending]
           start += 146

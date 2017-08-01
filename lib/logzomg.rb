@@ -1,6 +1,5 @@
+require_relative 'formatters/text_formatter'
 require "logzomg/version"
-require 'logger'
-require 'date'
 
 module Logzomg
   class Logger
@@ -11,26 +10,23 @@ module Logzomg
     UnsupportedType = Class.new(StandardError)
     UnsupportedLevel = Class.new(StandardError)
 
-    # @param {String} level
-    # @param {Hash} options
-    def initialize(level = 'warning', options = {})
-      @level = level
+    def initialize(formatter=TextFormatter.new)
+      @level = 'warning'
+      @formatter = formatter
     end 
 
-    # First set level -> Format message -> Write message to file
-    # @param {Hash} hash
+    # First set level -> 
+    # Format message -> 
+    # Write message to file
     def log(hash)
-      # Raise exception if hash isn't a Hash
       raise UnsupportedType, "Must be of type Hash" unless valid_hash?(hash)
-      level(hash[:level]) if hash.has_key?(:level)  # Use default if not included
-      msg = format_msg(hash[:msg])
+      level(hash[:level]) if hash.has_key?(:level)        # Use default if not included
+      msg = @formatter.format_msg(hash[:msg], @level)
       write(hash, msg)
     end 
 
     # Sets the log level
-    # @param {String} level
     def level(level)
-      # Raise exception if level isn't in LEVELS
       raise UnsupportedLevel, "Level " + level + " is not a valid level" unless valid_level?(level)
       @level = level
       self
@@ -43,12 +39,12 @@ module Logzomg
               "msg": "Something is on the horizon!", 
               "level": "debug"
             })
-      l.log({
-              "msg": "This is a really really really really really really really really really " +
-                      "really really really really really really really really really really really " +
-                      "really really really really really really debug message", 
-              "level": "debug"
-            })
+      #l.log({
+      #        "msg": "This is a really really really really really really really really really " +
+      #                "really really really really really really really really really really really " +
+      #                "really really really really really really debug message", 
+      #        "level": "debug"
+      #      })
       l.log({
               "msg": "Three wild acro-yoga enthusiasts have been spotted!", 
               "level": "info"
@@ -68,87 +64,21 @@ module Logzomg
     end  
   
     private
-      # Writes the log message to the logfile. If given one in hash[:file] use that
-      # @param {String} msg
+      # Writes the log message to the logfile 
+      # If given one in hash[:file] use that
       def write(hash, msg)
         file = hash.has_key?(:file) ? "/" + hash[:file] : '/log.txt'
         File.open(LOG_PATH + file, 'a') {|f| f.write(msg) }
       end  
 
-      # Split the message into 145 char chunks. Prepend level. Append DateTime
-      # @param {String} msg
-      # @return {String}
-      def format_msg(msg)
-        str = ""
-        s_msg = split_msg(msg)                                # Split message incase it's 150+ chars
-        count = 0                                             # Use to indent on n+1
-        s_msg.each do |n|
-          str += add_msg_identifier(str)
-          text = count >= 1 ? "  " + n : n           # Indent if n+1 loop
-          str += text
-          indented = count >= 1                               # Set indented to determine space amount
-          str += right_align_date(n, indented)
-          str += " | " + DateTime.now.to_s + "\n"
-          count += 1
-        end
-        str
-      end
-
-      # Adds spaces to right align date depending on str length and row number
-      # @param {String} msg
-      # @param {Bool} indented
-      # @return {String}
-      def right_align_date(msg, indented)
-        indented ? s = 148 : s = 150
-        " " * (s - msg.length)  
-      end
-
-      # TODO prettify this by maybe making LEVELS a hash and giving the colors in the value?
-      # Takes the message and adds color and the identifier at the start
-      # @param {String} str
-      # @return {String}
-      def add_msg_identifier(str)
-        if @level == 'debug'
-          "\e[34mDEBU\e[0m" + " | "
-        elsif @level == 'info' 
-          "\e[96mINFO\e[0m" + " | "
-        elsif @level == 'warning'
-          "\e[33mWARN\e[0m" + " | "
-        elsif @level == 'error'
-          "\e[31mERRO\e[0m" + " | "
-        elsif @level == 'fatal'
-          "\e[91mFATA\e[0m" + " | "
-        end 
-      end 
-
       # Checks if message is hash
-      # @param {hash} hash
-      # @return {Bool}
       def valid_hash?(hash)
         return hash.class == Hash
       end 
 
       # Checks if the level value is valid (part of LEVELS)
-      # @param {String} level
-      # @return {Bool}
       def valid_level?(level)
         return !level.nil? && LEVELS.any? { |l| l == level.downcase }
-      end
-
-      # Splits the message every 150 chars to make everything look prettier
-      # @param {String} msg
-      # @return {Array}
-      def split_msg(msg)
-        arr = []
-        start = 0
-        ending = 145
-        c = msg.length > 150 ? ((msg.length).to_f/150.00).ceil : 1
-        (1..c).each do |n|
-          arr << msg[start,ending]
-          start += 146
-          ending += 145
-        end
-        arr  
-      end  
+      end 
   end
 end

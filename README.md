@@ -2,7 +2,7 @@
 
 An easy to use and lightweight logging gem for Ruby.
 
-![Terminal output](http://imgur.com/pyfbspR)
+![Terminal output](http://i.imgur.com/pyfbspR.png)
 
 Logzomg currently supports varying levels of severity.
 
@@ -26,7 +26,7 @@ Fatal
 
 You can instantiate the logger and use it like so:
 
-`
+```ruby
 def log
   l = Logzomg::Logger.new
   l.log({
@@ -35,7 +35,7 @@ def log
           "file": "frank.txt"                                 # Optional. Sets name of file to log to. Default is log.txt
         })
 end  
-`
+```
 
 By default Logzomg color codes the logging levels when viewed in a terminal. If you want to turn this off you can instead pass a TextFormatter when instantiating the logger.
 

@@ -29,7 +29,7 @@ module Logzomg
 
     # Sets the log level
     # @param {String} level
-    def level(level=nil)
+    def level(level)
       # Raise exception if level isn't in LEVELS
       raise UnsupportedLevel, "Level " + level + " is not a valid level" unless valid_level?(level)
       @level = level

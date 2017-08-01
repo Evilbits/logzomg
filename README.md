@@ -1,5 +1,7 @@
 # Logzomg
 
+**Logzomg is still in development. Do not expect crazy functionality yet :)**
+
 An easy to use and lightweight logging gem for Ruby.
 
 ![Terminal output](http://i.imgur.com/reu3xof.png)

@@ -31,8 +31,8 @@ def log
   l = Logzomg::Logger.new
   l.log({
           "msg": "Frank took the last coffee and forgot to make some new. Fire him?", 
-          "level": "info",                                    # Optional. Sets log level. Default is warning
-          "file": "frank.txt"                                 # Optional. Sets name of file to log to. Default is log.txt
+          "level": "info",                    # Optional. Sets log level. Default is warning
+          "file": "frank.txt"                 # Optional. Sets name of file to log to. Default is log.txt
         })
 end  
 ```

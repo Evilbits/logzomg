@@ -1,8 +1,52 @@
 # Logzomg
 
-Logzomg is currently in production.
+An easy to use and lightweight logging gem for Ruby.
 
-TODO: Update this damn README
+![Terminal output](http://imgur.com/pyfbspR)
+
+Logzomg currently supports varying levels of severity.
+
+`
+Debug
+`
+`
+Info
+`
+`
+Warn
+`
+`
+Error
+`
+`
+Fatal
+`
+
+## Usage
+
+You can instantiate the logger and use it like so:
+
+`
+def log
+  l = Logzomg::Logger.new
+  l.log({
+          "msg": "Frank took the last coffee and forgot to make some new. Fire him?", 
+          "level": "info",                                    # Optional. Sets log level. Default is warning
+          "file": "frank.txt"                                 # Optional. Sets name of file to log to. Default is log.txt
+        })
+end  
+`
+
+By default Logzomg color codes the logging levels when viewed in a terminal. If you want to turn this off you can instead pass a TextFormatter when instantiating the logger.
+
+The TextFormatter takes a hash of options.
+
+`
+  Logzomg::Logger.new(TextFormatter.new({with_colors: false}))
+`
+
+Currently Logzomg only supports logging as plaintext. Soon it will support logging as JSON as well.
+
 
 ## Installation
 
@@ -19,24 +63,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install logzomg
-
-## Usage
-
-Logzomg currently supports varying levels of logging intensity.
-
-`
-Debug
-Info
-Warn
-Error
-Fatal
-`
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 

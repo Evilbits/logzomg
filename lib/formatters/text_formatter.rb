@@ -35,7 +35,7 @@ class TextFormatter
   private
     # Adds spaces to right align date depending on str length and row number
     def right_align_date(msg, indented)
-      indented ? s = 148 : s = 150
+      indented ? s = 60 : s = 58
       " " * (s - msg.length)  
     end
 

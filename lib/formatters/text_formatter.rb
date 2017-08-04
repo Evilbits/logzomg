@@ -42,17 +42,8 @@ class TextFormatter
     # Adds log level to start of log
     # Add color if color is true
     def add_msg_identifier(str)
-      if @level == 'debug'
-        str += "DBUG"
-      elsif @level == 'info' 
-        str += "INFO"
-      elsif @level == 'warning'
-        str += "WARN"
-      elsif @level == 'error'
-        str += "ERRO"
-      elsif @level == 'fatal'
-        str += "FATA"
-      end 
+      # Need a check since debug has a different identifier than the rest
+      str += @level == 'debug' ? 'DBUG' : @level[0..3].upcase
       str = add_color(str) if @color
       str += + " | "
     end 

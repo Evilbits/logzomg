@@ -34,30 +34,29 @@ module Logzomg
 
     # REMOVE AFTER DONE CODING
     def test
-      l = Logzomg::Logger.new
-      l.log({
+      self.log({
               "msg": "Something is on the horizon!", 
               "level": "debug"
             })
-      #l.log({
+      #self.log({
       #        "msg": "This is a really really really really really really really really really " +
       #                "really really really really really really really really really really really " +
       #                "really really really really really really debug message", 
       #        "level": "debug"
       #      })
-      l.log({
+      self.log({
               "msg": "Three wild acro-yoga enthusiasts have been spotted!", 
               "level": "info"
             })
-      l.log({
+      self.log({
               "msg": "They are coming closer!", 
               "level": "warning"
             })
-      l.log({
+      self.log({
               "msg": "I don\'t know how to handle them!!", 
               "level": "error"
             })
-      l.log({
+      self.log({
               "msg": "You have died", 
               "level": "fatal"
             })

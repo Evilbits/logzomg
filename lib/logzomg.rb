@@ -35,31 +35,25 @@ module Logzomg
     # REMOVE AFTER DONE CODING
     def test
       self.log({
-              msg: "Something is on the horizon!",
-              look: true, 
+              msg: "Something is on the horizon!", 
               level: "debug"
             })
       self.log({
               msg: "This is a really really really really really really really really really " +
-                      "really really really really really really really really really really crazy " +
                       "really really really really really really really really really really really " +
-                      "really really really really really really really really really really really " +
-                      "really really really really really really really really really really really " +
-                      "really really really really really really really really really really really " +
-                      "really really really really really really long debug message", 
+                      "really really really really really really debug message", 
               level: "debug"
             })
       self.log({
-              number: 3,
-              entity: "Acro-yoga enthusiasts",
-              wild: true,
-              msg: "Have been spotted!", 
-              damn: "son",
-              level: "info"
-            })
+                number: 3,
+                entity: "Acro-yoga enthusiasts",
+                wild: true,
+                msg: "Have been spotted!", 
+                damn: "son",
+                level: "info"              
+              })
       self.log({
               msg: "They are coming closer!", 
-              omg: "true",
               level: "warning"
             })
       self.log({

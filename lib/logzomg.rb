@@ -35,40 +35,40 @@ module Logzomg
     # REMOVE AFTER DONE CODING
     def test
       self.log({
-              "msg": "Something is on the horizon!",
-              "look": true, 
-              "level": "debug"
+              msg: "Something is on the horizon!",
+              look: true, 
+              level: "debug"
             })
       self.log({
-              "msg": "This is a really really really really really really really really really " +
+              msg: "This is a really really really really really really really really really " +
                       "really really really really really really really really really really crazy " +
                       "really really really really really really really really really really really " +
                       "really really really really really really really really really really really " +
                       "really really really really really really really really really really really " +
                       "really really really really really really really really really really really " +
                       "really really really really really really long debug message", 
-              "level": "debug"
+              level: "debug"
             })
       self.log({
-              "number": 3,
-              "entity": "Acro-yoga enthusiasts",
-              "wild": true,
-              "msg": "Have been spotted!", 
-              "damn": "son",
-              "level": "info"
+              number: 3,
+              entity: "Acro-yoga enthusiasts",
+              wild: true,
+              msg: "Have been spotted!", 
+              damn: "son",
+              level: "info"
             })
       self.log({
-              "msg": "They are coming closer!", 
-              "omg": "true",
-              "level": "warning"
+              msg: "They are coming closer!", 
+              omg: "true",
+              level: "warning"
             })
       self.log({
-              "msg": "I don\'t know how to handle them!!", 
-              "level": "error"
+              msg: "I don\'t know how to handle them!!", 
+              level: "error"
             })
       self.log({
-              "msg": "You have died", 
-              "level": "fatal"
+              msg: "You have died", 
+              level: "fatal"
             })
     end  
   

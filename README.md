@@ -4,7 +4,7 @@
 
 An easy to use and lightweight logging gem for Ruby.
 
-![Terminal output](http://i.imgur.com/reu3xof.png)
+![Terminal output](http://i.imgur.com/En1fz9r.png)
 
 Logzomg currently supports varying levels of severity.
 

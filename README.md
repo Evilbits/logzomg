@@ -26,18 +26,27 @@ Fatal
 
 ## Usage
 
+The logger takes a hash in and formats the key-value pairs. The key msg will always be displayed last.
+
 You can instantiate the logger and use it like so:
 
 ```ruby
 def log
   l = Logzomg::Logger.new
   l.log({
-          "msg": "Frank took the last coffee and forgot to make some new. Fire him?", 
-          "level": "info",                    # Optional. Sets log level. Default is warning
+          number: 3,
+          entity: "Acro-yoga enthusiasts",
+          wild: true,
+          msg: "Have been spotted!", 
+          damn: "son",
+          level: "info",                      # Optional. Sets log level. Default is warning
           "file": "frank.txt"                 # Optional. Sets name of file to log to. Default is log.txt
         })
 end  
 ```
+
+Giving this result:
+![Terminal output](http://i.imgur.com/IvprMBS.png)
 
 By default Logzomg color codes the logging levels when viewed in a terminal. If you want to turn this off you can instead pass a TextFormatter when instantiating the logger.
 

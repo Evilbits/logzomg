@@ -40,7 +40,7 @@ def log
           msg: "Have been spotted!", 
           damn: "son",
           level: "info",                      # Optional. Sets log level. Default is warning
-          "file": "frank.txt"                 # Optional. Sets name of file to log to. Default is log.txt
+          file: "frank.txt"                 # Optional. Sets name of file to log to. Default is log.txt
         })
 end  
 ```

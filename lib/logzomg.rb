@@ -21,7 +21,7 @@ module Logzomg
     def log(hash)
       raise UnsupportedType, "Must be of type Hash" unless valid_hash?(hash)
       level(hash[:level]) if hash.has_key?(:level)        # Use default if not included
-      msg = @formatter.format_msg(hash[:msg], @level)
+      msg = @formatter.format_msg(hash, @level)
       write(hash, msg)
     end 
 
@@ -35,21 +35,31 @@ module Logzomg
     # REMOVE AFTER DONE CODING
     def test
       self.log({
-              "msg": "Something is on the horizon!", 
+              "msg": "Something is on the horizon!",
+              "look": true, 
               "level": "debug"
             })
-      #self.log({
-      #        "msg": "This is a really really really really really really really really really " +
-      #                "really really really really really really really really really really really " +
-      #                "really really really really really really debug message", 
-      #        "level": "debug"
-      #      })
       self.log({
-              "msg": "Three wild acro-yoga enthusiasts have been spotted!", 
+              "msg": "This is a really really really really really really really really really " +
+                      "really really really really really really really really really really crazy " +
+                      "really really really really really really really really really really really " +
+                      "really really really really really really really really really really really " +
+                      "really really really really really really really really really really really " +
+                      "really really really really really really really really really really really " +
+                      "really really really really really really long debug message", 
+              "level": "debug"
+            })
+      self.log({
+              "number": 3,
+              "entity": "Acro-yoga enthusiasts",
+              "wild": true,
+              "msg": "Have been spotted!", 
+              "damn": "son",
               "level": "info"
             })
       self.log({
               "msg": "They are coming closer!", 
+              "omg": "true",
               "level": "warning"
             })
       self.log({

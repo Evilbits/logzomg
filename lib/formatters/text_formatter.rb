@@ -20,7 +20,7 @@ class TextFormatter
 
     # We loop over every key in the hash and format the key/value in the string format we want    
     hash.each do |key, value|
-      if !key.to_s.eql?("level") && !key.to_s.eql?("msg")
+      if !key.to_s.eql?("level") && !key.to_s.eql?("msg") && !key.to_s.eql?("file")
         str_keys_values += key.to_s + ": " + value.to_s + "  | "
       end
     end

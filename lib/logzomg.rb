@@ -35,13 +35,13 @@ module Logzomg
     # REMOVE AFTER DONE CODING
     def test
       self.log({
-                msg:      "Something is on the horizon!", 
-                spotted:  "unknown",
+                long:     true,
+                msg:      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum dui, luctus ac velit nec, imperdiet elementum turpis. Pellentesque velit tellus, ultricies non mauris at, semper rhoncus enim. Duis blandit arcu aliquam, sollicitudin leo quis, feugiat orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed et tortor vel lectus convallis posuere ac vel lacus. Praesent vestibulum cursus ipsum vel elementum. Fusce elit enim, sollicitudin id sem consequat, molestie accumsan mi. Aliquam vehicula urna tortor, sit amet laoreet lacus pulvinar eu. Ut imperdiet vitae neque eu consectetur. Nam ac lacus finibus, fringilla neque ac, maximus ligula. Duis ullamcorper, felis sit amet luctus vehicula, sapien est dictum lorem, nec blandit nunc mi id enim. Curabitur quis laoreet erat. Maecenas varius cursus blandit. Aliquam eleifend mauris ut nisl mollis, quis placerat nisi bibendum.",
                 level:    "debug"
               })
       self.log({
-                long:     true,
-                msg:      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum dui, luctus ac velit nec, imperdiet elementum turpis. Pellentesque velit tellus, ultricies non mauris at, semper rhoncus enim. Duis blandit arcu aliquam, sollicitudin leo quis, feugiat orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed et tortor vel lectus convallis posuere ac vel lacus. Praesent vestibulum cursus ipsum vel elementum. Fusce elit enim, sollicitudin id sem consequat, molestie accumsan mi. Aliquam vehicula urna tortor, sit amet laoreet lacus pulvinar eu. Ut imperdiet vitae neque eu consectetur. Nam ac lacus finibus, fringilla neque ac, maximus ligula. Duis ullamcorper, felis sit amet luctus vehicula, sapien est dictum lorem, nec blandit nunc mi id enim. Curabitur quis laoreet erat. Maecenas varius cursus blandit. Aliquam eleifend mauris ut nisl mollis, quis placerat nisi bibendum.",
+                msg:      "Something is on the horizon!", 
+                spotted:  "unknown",
                 level:    "debug"
               })
       self.log({

@@ -4,7 +4,7 @@
 
 An easy to use and lightweight logging gem for Ruby.
 
-![Terminal output](http://i.imgur.com/dsQyWNo.png)
+![Terminal output](http://i.imgur.com/SFvnXXm.png)
 
 Logzomg currently supports varying levels of severity.
 
@@ -44,9 +44,6 @@ def log
         })
 end  
 ```
-
-Giving this result:
-![Terminal output](http://i.imgur.com/IvprMBS.png)
 
 By default Logzomg color codes the logging levels when viewed in a terminal. If you want to turn this off you can instead pass a TextFormatter when instantiating the logger.
 

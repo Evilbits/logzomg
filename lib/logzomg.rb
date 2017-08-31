@@ -4,15 +4,15 @@ require "logzomg/version"
 module Logzomg
   class Logger
     # TODO change this to proper file path
-    LOG_PATH = File.expand_path(Rails.root.join('logs',__FILE__)
     LEVELS = ['debug','info','warning','error','fatal']
 
     UnsupportedType = Class.new(StandardError)
     UnsupportedLevel = Class.new(StandardError)
 
+    attr_accessor :log_path
+
     def initialize(**args, &block)
-      # Set some default values
-      puts LOG_PATH
+      @log_path = File.expand_path('../../logs/', __FILE__)
       @level = args[:level] ? args[:level] : "warning"
       @formatter = args[:formatter] ? args[:formatter] : TextFormatter.new {|f| f.with_color = true}
       if block_given?
@@ -59,6 +59,9 @@ module Logzomg
                 "felis sit amet luctus vehicula, sapien est dictum lorem, nec blandit nunc mi id enim. Curabitur quis laoreet erat. Maecenas varius cursus blandit." + 
                 "Aliquam eleifend mauris ut nisl mollis, quis placerat nisi bibendum.",
                 long:     true,
+                what:     true,
+                bugged:   false,
+                nigga:    "what",
                 level:    "debug"
               })
       self.log({
@@ -96,8 +99,12 @@ module Logzomg
       # If given one in hash[:file] use that
       def write(hash, msg)
         file = hash.has_key?(:file) ? "/" + hash[:file] : '/log.txt'
-        File.open(LOG_PATH + file, 'a') {|f| f.write(msg) }
+        File.open(@log_path + file, 'a') {|f| f.write(msg) }
       end  
+
+      def get_path
+        Dir.pwd
+      end
 
       # Checks if message is hash
       def valid_hash?(hash)

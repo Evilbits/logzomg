@@ -52,14 +52,14 @@ By default Logzomg color codes the logging levels when viewed in a terminal. If 
 
 The TextFormatter takes a hash of options.
 
-`ruby
+```ruby
 def logger
   Logzomg::Logger.new(formatter: TextFormatter.new { |f|
       f.with_color = true
       f.short_date  = true
   })
 end
-`
+```
 
 Currently Logzomg only supports logging as plaintext. Soon it will support logging as JSON as well.
 

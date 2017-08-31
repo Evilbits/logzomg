@@ -34,14 +34,14 @@ You can instantiate the logger and use it like so:
 def log
   l = Logzomg::Logger.new
   l.log({
-          number: 3,
-          entity: "Acro-yoga enthusiasts",
-          wild: true,
-          msg: "Have been spotted!", 
-          damn: "son",
-          level: "info",                       # Optional. Sets log level. Default is warning
-          file: "help.txt"                     # Optional. Sets name of file to log to. Default is log.txt
-        })
+    number: 3,
+    entity: "Acro-yoga enthusiasts",
+    wild: true,
+    msg: "Have been spotted!", 
+    damn: "son",
+    level: "info",                       # Optional. Sets log level. Default is warning
+    file: "help.txt"                     # Optional. Sets name of file to log to. Default is log.txt
+  })
 end  
 ```
 
@@ -52,13 +52,11 @@ The TextFormatter takes a hash of options.
 ```ruby
 def logger
   Logzomg::Logger.new(formatter: TextFormatter.new { |f|
-      f.with_color = true
-      f.short_date  = true
+    f.with_color = true
+    f.short_date  = true
   })
 end
 ```
-
-Currently Logzomg only supports logging as plaintext. Soon it will support logging as JSON as well.
 
 
 ## Installation

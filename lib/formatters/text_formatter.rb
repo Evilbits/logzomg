@@ -41,10 +41,6 @@ class TextFormatter
     end
 
     s_msg = split_msg(str_keys_values)                    # Split message incase it's MAX_CHAR+ chars
-    
-    s_msg.each do |n|
-      puts n
-    end
 
     count = 0                                             # Use to indent on 2nd+ iteration
 
@@ -78,13 +74,10 @@ class TextFormatter
       if with_color
         if msg == full_msgs.first && full_msgs.size > 1     # Triggers on first line of multiline
           extra = 0
-          puts "#{msg} #{itr} triggered 1"
         elsif itr == 1                                      # Triggers on first itr if it's one-line with args
           extra = 9 * get_size(hash)
-          puts "#{msg} #{itr} triggered 2"
         elsif itr == full_msgs.length && get_size(hash) > 0 # Triggers on last line of multiline msg
           extra = 9
-          puts "#{msg} #{itr} triggered 3"
         end
       end
 

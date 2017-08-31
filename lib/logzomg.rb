@@ -4,7 +4,7 @@ require "logzomg/version"
 module Logzomg
   class Logger
     # TODO change this to proper file path
-    LOG_PATH = File.expand_path('../../logs/', __FILE__)
+    LOG_PATH = File.expand_path(Rails.root.join('logs',__FILE__)
     LEVELS = ['debug','info','warning','error','fatal']
 
     UnsupportedType = Class.new(StandardError)
@@ -12,6 +12,7 @@ module Logzomg
 
     def initialize(**args, &block)
       # Set some default values
+      puts LOG_PATH
       @level = args[:level] ? args[:level] : "warning"
       @formatter = args[:formatter] ? args[:formatter] : TextFormatter.new {|f| f.with_color = true}
       if block_given?

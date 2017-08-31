@@ -1,3 +1,3 @@
 module Logzomg
-  VERSION = "0.1.0.3.1"
+  VERSION = "0.1.0.4"
 end

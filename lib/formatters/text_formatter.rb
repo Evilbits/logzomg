@@ -14,7 +14,7 @@ class TextFormatter
     fatal:    "31"
   }
 
-  attr_accessor :with_color
+  attr_accessor :with_color, :short_date
 
   def initialize
     if block_given?
@@ -35,8 +35,8 @@ class TextFormatter
     # We loop over every key in the hash and format the key/value in the string format we want    
     hash.each do |key, value|
       if !key.to_s.eql?("level") && !key.to_s.eql?("msg") && !key.to_s.eql?("file")
-        key = add_color_key(key) + ": " if with_color     # Add color to keys if with_color is set to true
-        str_keys_values += "#{key} #{value}  "
+        key = "#{add_color_key(key)} :" if with_color     # Add color to keys if with_color is set to true
+        str_keys_values += "#{key}: #{value}  "
       end
     end
 
@@ -64,7 +64,8 @@ class TextFormatter
 
   private
     def add_date(count)
-      count > 0 ? "" : DateTime.now.to_s
+      date = short_date ? DateTime.now.strftime('%b-%e %H:%M:%S') : DateTime.now.to_s
+      count > 0 ? "" : date
     end
 
     # Adds spaces to right align date depending on str length and row number
@@ -74,14 +75,18 @@ class TextFormatter
     def right_align_date(msg, hash, itr, full_msgs)
       extra = 0
       # If msg is first don't right_align since there's always a line 2
-      if msg == full_msgs.first && full_msgs.size > 1     # Triggers on first line of multiline
-        extra = 0
-      elsif itr == 1                                      # Triggers on first itr if it's one-line with args
-        extra = 9 * get_size(hash)
-      elsif itr == full_msgs.length && get_size(hash) > 0 # Triggers on last line of multiline msg
-        extra = 9
+      if with_color
+        if msg == full_msgs.first && full_msgs.size > 1     # Triggers on first line of multiline
+          extra = 0
+          puts "#{msg} #{itr} triggered 1"
+        elsif itr == 1                                      # Triggers on first itr if it's one-line with args
+          extra = 9 * get_size(hash)
+          puts "#{msg} #{itr} triggered 2"
+        elsif itr == full_msgs.length && get_size(hash) > 0 # Triggers on last line of multiline msg
+          extra = 9
+          puts "#{msg} #{itr} triggered 3"
+        end
       end
-
 
       s = itr > 1 ? MAX_CHAR - 2 : MAX_CHAR - 1
       " " * (s - msg.length + extra)
@@ -122,7 +127,6 @@ class TextFormatter
     def split_msg(msg)
       sub_end = MAX_CHAR - 5
       # Goes back to start of word if matches inside a word. If it matches inside a coloured key go back to start of word before colour
-      arr = msg.scan(/.{0,#{Regexp.escape(sub_end.to_s)}}[^\\033\[33m\]a-z\\e\[0m$a-z.!?,;](?:\b|$)/mi)
-      arr
+      msg.scan(/.{0,#{Regexp.escape(sub_end.to_s)}}[^\\033\[33m\]a-z\\e\[0m$a-z.!?,;](?:\b|$)/mi)
     end 
 end

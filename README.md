@@ -2,7 +2,7 @@
 
 **Logzomg is still in development. Do not expect crazy functionality yet :)**
 
-An easy to use and lightweight logging gem for Ruby.
+An easy to use and modern logging gem made for Rails APIs.
 
 ![Terminal output](http://i.imgur.com/SFvnXXm.png)
 
@@ -26,9 +26,9 @@ Fatal
 
 ## Usage
 
-The logger takes a hash in and formats the key-value pairs. The key msg will always be displayed last.
+The logger takes a hash in and formats the key-value pairs. Msg must always be included and will always be shown first.
 
-You can instantiate the logger and use it like so:
+You can instantiate the logger and give it X amount of key/value pairs.
 
 ```ruby
 def log

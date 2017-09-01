@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Logzomg::VERSION
   spec.authors       = ["Rasmus"]
   spec.email         = ["Rasmusbreiler@gmail.com"]
-  spec.description   = "An easy to use, lightweight logging gem for Ruby applications"
+  spec.description   = "An easy to use, lightweight logging gem for Rails applications"
 
   spec.summary       = %q{Logging gem with Asana API integration}
   spec.homepage      = "https://github.com/Evilbits/logzomg"

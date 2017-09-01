@@ -65,6 +65,14 @@ module Logzomg
                 level:    "debug"
               })
       self.log({
+                msg:      "This is very long This is very long This is very long This is very long This is very long This is very long This is very long This is very long This is very long This is very long This is very long This is very long This is very long ",
+                long:     true,
+                what:     true,
+                bugged:   false,
+                nigga:    "what",
+                level:    "debug"
+              })
+      self.log({
                 msg:      "Something is on the horizon!", 
                 spotted:  "unknown",
                 level:    "debug"
@@ -73,8 +81,12 @@ module Logzomg
                 number: 3,
                 entity:   "Acro-yoga enthusiasts",
                 wild:     true,
-                msg:      "Have been spotted!", 
+                msg:      "Something has been spotted!", 
                 damn:     "son",
+                damn2:     "son",
+                damn3:     "son",
+                damn4:     "son",
+                damn5:     "son",
                 level:    "info"              
               })
       self.log({

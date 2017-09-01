@@ -1,8 +1,8 @@
 require 'date'
 
 class TextFormatter
-  MAX_CHAR = 150
-  MAX_CHAR_FLOAT = 145.00   # There's some problems with float decimal precision. Keep this 5 below MAX_CHAR
+  MAX_CHAR = 130
+  MAX_CHAR_FLOAT = 125.00   # There's some problems with float decimal precision. Keep this 5 below MAX_CHAR
   COLORS = {
     info:     "96",
     warning:  "33", 
@@ -76,6 +76,6 @@ class TextFormatter
     def split_msg(msg)
       sub_end = MAX_CHAR - 5
       # Goes back to start of word if matches inside a word. If it matches inside a coloured key go back to start of word before colour
-      msg.scan(/.{0,#{Regexp.escape(sub_end.to_s)}}[^\\033\[0-90-9m\]\w\\e\[0m:\$](?:\ |$)/mi)
+      msg.scan(/.{0,#{Regexp.escape(sub_end.to_s)}}[\\033\[0-90-9m\]\w\\e\[0m](?:\ |$)/mi).each { |n| n.slice!(0) if n[0] == " "}
     end 
 end

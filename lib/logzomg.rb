@@ -12,7 +12,7 @@ module Logzomg
     attr_accessor :log_path
 
     def initialize(**args, &block)
-      @log_path = File.expand_path('../../logs/', __FILE__)
+      @log_path = get_log_path
       @level = args[:level] ? args[:level] : "warning"
       @formatter = args[:formatter] ? args[:formatter] : TextFormatter.new {|f| f.with_color = true}
       if block_given?
@@ -83,10 +83,11 @@ module Logzomg
                 wild:     true,
                 msg:      "Something has been spotted!", 
                 damn:     "son",
-                damn2:     "son",
-                damn3:     "son",
-                damn4:     "son",
-                damn5:     "son",
+                damn2:    "son",
+                damn3:    "son",
+                object:   Object.new,
+                damn4:    "son",
+                damn5:    "son",
                 level:    "info"              
               })
       self.log({
@@ -114,18 +115,22 @@ module Logzomg
         File.open(@log_path + file, 'a') {|f| f.write(msg) }
       end  
 
-      def get_path
-        Dir.pwd
-      end
-
       # Checks if message is hash
       def valid_hash?(hash)
-        return hash.class == Hash
+        return hash.is_a?(Hash)
       end 
 
       # Checks if the level value is valid (part of LEVELS)
       def valid_level?(level)
         return !level.nil? && LEVELS.any? { |l| l == level.downcase }
       end 
+
+      def get_log_path
+        if defined?(Rails)
+          File.expand_path(Rails.root.to_s + '/log/')
+        else
+          File.expand_path('log/')
+        end
+      end
   end
 end

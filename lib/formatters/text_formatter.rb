@@ -31,9 +31,10 @@ class TextFormatter
 
     s_msg.each do |n|
       str += count == 0 ? "#{add_log_level(str)}#{get_date} | " : "#{add_log_level(str)}"
-      str += count == 0 ? "#{n}\n" : " " * (get_date.length) + " | #{n}\n" # Indent if 2nd+ iteration
+      str += count == 0 ? "#{n}\n" : " " * (get_date.length) + " |   #{n}\n" # Indent if 2nd+ iteration
       count += 1
     end
+
     str
   end
 
@@ -76,6 +77,7 @@ class TextFormatter
     def split_msg(msg)
       sub_end = MAX_CHAR - 5
       # Goes back to start of word if matches inside a word. If it matches inside a coloured key go back to start of word before colour
-      msg.scan(/.{0,#{Regexp.escape(sub_end.to_s)}}[\\033\[0-90-9m\]\w\\e\[0m](?:\ |$)/mi).each { |n| n.slice!(0) if n[0] == " "}
+      # Remove starting whitespace. Sometimes creates empty array indice so remove if length isn't long enough
+      arr = msg.scan(/.{0,#{Regexp.escape(sub_end.to_s)}}[\\033\[0-90-9m\w\\e\[0m\ ]{0}(?:\ |$)/mi).select { |s| s.length > 1 }.each { |n| n.slice!(0) if n[0] == " "}
     end 
 end

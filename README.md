@@ -1,6 +1,6 @@
 # Logzomg
 
-**Logzomg is still in development. Do not expect crazy functionality yet :)**
+**Logzomg is NOT in development. No features will be added and no bugs will be fixed**
 
 An easy to use and modern logging gem made for Rails APIs.
 
